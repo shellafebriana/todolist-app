@@ -148,18 +148,6 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                           fontSize: 18))),
               SizedBox(height: 25),
-
-              // register
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Don’t have an account? ', style: GoogleFonts.mulish()),
-                  Text(
-                    'Register Now!',
-                    style: GoogleFonts.mulish(color: Colors.red[400]),
-                  )
-                ],
-              )
             ]),
           ),
         ),
