@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import 'package:todolist/insertpage.dart';
+import 'package:todolist/loginpage.dart';
 import 'package:todolist/updatepage.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,8 +23,9 @@ class _HomePageState extends State<HomePage> {
   List list = [];
   Future getData() async {
     try {
-      final response = await http
-          .get(Uri.parse('http://127.0.0.1/simob/todolist/backend/list.php'));
+      final response = await http.post(
+          Uri.parse('http://127.0.0.1/simob/todolist/backend/list.php'),
+          body: {'id_user': widget.id_user});
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         setState(() {
@@ -111,17 +113,31 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: ((context) => InsertPage(
-                          id_user: widget.id_user,
-                          key: (null),
-                        ))));
-          }),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+              child: Icon(Icons.logout),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => LoginPage())));
+              }),
+          SizedBox(
+            height: 10,
+          ),
+          FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: ((context) => InsertPage(
+                              id_user: widget.id_user,
+                              key: (null),
+                            ))));
+              }),
+        ],
+      ),
     );
   }
 }

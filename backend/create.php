@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin:*");
 header("Access-Control-Allow-Headers:*");
 $connection = new mysqli("localhost", "root", "", "todolist");
-$id_user    = 4;
+$id_user    = $_POST['id_user'];
 $teks       = $_POST['teks'];
 $date       = date('Y-m-d');
 $result = mysqli_query($connection, "INSERT INTO plan VALUES ('','$teks','$date')");

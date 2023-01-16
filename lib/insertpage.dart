@@ -21,9 +21,7 @@ class _InsertPageState extends State<InsertPage> {
   Future _simpan() async {
     final response = await http.post(
         Uri.parse('http://127.0.0.1/simob/todolist/backend/create.php'),
-        body: {
-          'teks': teks.text,
-        });
+        body: {'teks': teks.text, 'id_user': widget.id_user});
     if (response.statusCode == 200) {
       return true;
     }

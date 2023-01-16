@@ -129,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                                     id_user: id_user,
                                     key: (null),
                                   ));
-                          Navigator.of(context).push(route);
+                          Navigator.pushReplacement(context, route);
                         } else {
                           final snackBar =
                               SnackBar(content: const Text('Sign In failed'));
