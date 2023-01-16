@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin:*");
+header("Access-Control-Allow-Headers:*");
 $connection = new mysqli("localhost", "root", "", "todolist");
 $username = $_POST['username'];
 $password = $_POST['password'];

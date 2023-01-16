@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin:*");
+header("Access-Control-Allow-Headers:*");
 $connection = new mysqli("localhost", "root", "", "todolist");
 $id_user    = 4;
 $teks       = $_POST['teks'];
