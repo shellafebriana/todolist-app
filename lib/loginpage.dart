@@ -11,6 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var id_user = '';
   final formKey = GlobalKey<FormState>();
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -22,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
           'password': password.text,
         });
     var datauser = jsonDecode(response.body);
-    print(datauser);
+    id_user = datauser[0]['id_user'];
     if (datauser.length == 0) {
       return false;
     }
@@ -123,12 +124,12 @@ class _LoginPageState extends State<LoginPage> {
                           final snackBar = SnackBar(
                               content: const Text('Sign In was Successfully'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          //         var route = MaterialPageRoute(
-                          //     builder: (BuildContext context) => HomePage(
-                          //           value: ,
-                          //           key: (null),
-                          //         ));
-                          // Navigator.of(context).push(route);
+                          var route = MaterialPageRoute(
+                              builder: (BuildContext context) => HomePage(
+                                    id_user: id_user,
+                                    key: (null),
+                                  ));
+                          Navigator.of(context).push(route);
                         } else {
                           final snackBar =
                               SnackBar(content: const Text('Sign In failed'));

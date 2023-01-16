@@ -5,7 +5,11 @@ import 'package:http/http.dart' as http;
 import 'package:todolist/homepage.dart';
 
 class InsertPage extends StatefulWidget {
-  const InsertPage({super.key});
+  final String id_user;
+  InsertPage({
+    required Key? key,
+    required this.id_user,
+  }) : super(key: key);
 
   @override
   State<InsertPage> createState() => _InsertPageState();
@@ -66,7 +70,11 @@ class _InsertPageState extends State<InsertPage> {
                       });
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(
+                              builder: (context) => HomePage(
+                                    id_user: widget.id_user,
+                                    key: (null),
+                                  )),
                           (route) => false);
                     }
                   },

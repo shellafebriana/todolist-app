@@ -8,7 +8,11 @@ import 'package:todolist/insertpage.dart';
 import 'package:todolist/updatepage.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String id_user;
+  HomePage({
+    required Key? key,
+    required this.id_user,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -69,6 +73,8 @@ class _HomePageState extends State<HomePage> {
                                   'id_plan': list[index]['id_plan'],
                                   'teks': list[index]['teks'],
                                 },
+                                id_user: widget.id_user,
+                                key: (null),
                               ))));
                 },
                 child: ListTile(
@@ -92,7 +98,10 @@ class _HomePageState extends State<HomePage> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => HomePage(
+                                        id_user: widget.id_user,
+                                        key: (null),
+                                      )),
                               (route) => false);
                         });
                       },
@@ -105,8 +114,13 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: ((context) => InsertPage())));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: ((context) => InsertPage(
+                          id_user: widget.id_user,
+                          key: (null),
+                        ))));
           }),
     );
   }

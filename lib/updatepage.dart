@@ -6,7 +6,9 @@ import 'package:todolist/homepage.dart';
 
 class UpdatePage extends StatefulWidget {
   final Map ListData;
-  const UpdatePage({super.key, required this.ListData});
+  final String id_user;
+  UpdatePage({required Key? key, required this.id_user, required this.ListData})
+      : super(key: key);
 
   @override
   State<UpdatePage> createState() => _UpdatePageState();
@@ -72,7 +74,11 @@ class _UpdatePageState extends State<UpdatePage> {
                       });
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(
+                              builder: (context) => HomePage(
+                                    id_user: widget.id_user,
+                                    key: (null),
+                                  )),
                           (route) => false);
                     }
                   },
